@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+"Command line script for running Percheron"
+
+import sys
+from percheron import Library
+from percheron import RootCommander
+
+PROGRAM_NAME = "percheron"
+
+RootCommander(PROGRAM_NAME, Library()).run(sys.stdin, sys.stdout)

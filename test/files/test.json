@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Werewolves",
+        "main": [
+            "4 Brutal Cathar // Moonrage Brute (MID) 7",
+            "4 Forest (VOW) 276",
+            "4 Rahilda, Wanted Cutthroat // Rahilda, Feral Outlaw (Y22) 42",
+            "4 Forsaken Crossroads (Y22) 63",
+            "4 Reckless Stormseeker // Storm-Charged Slasher (MID) 157",
+            "4 Ascendant Packleader (VOW) 186",
+            "4 Tenacious Pup (Y22) 56",
+            "4 Werewolf Pack Leader (AFR) 211",
+            "3 Ranger Class (AFR) 202",
+            "3 Tovolar, Dire Overlord // Tovolar, the Midnight Scourge (MID) 246",
+            "2 Fateful Absence (MID) 18",
+            "4 Inquisitor Captain (Y22) 8",
+            "2 Lair of the Hydra (AFR) 259",
+            "4 Cragcrown Pathway // Timbercrown Pathway (ZNR) 261",
+            "4 Needleverge Pathway // Pillarverge Pathway (ZNR) 263",
+            "4 Branchloft Pathway // Boulderloft Pathway (ZNR) 258",
+            "2 Rockfall Vale (MID) 266"
+        ],
+        "sideboard": [
+            "1 Containment Breach (STX) 125",
+            "1 Environmental Sciences (STX) 1",
+            "1 Mascot Exhibition (STX) 5",
+            "1 Bloodrage Alpha (Y22) 36",
+            "1 Avabruck Caretaker // Hollowhenge Huntmaster (VOW) 187",
+            "2 Legion Angel (ZNR) 23"
+        ]
+    }
+]
