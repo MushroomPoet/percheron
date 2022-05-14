@@ -141,13 +141,20 @@ class Library:
         return True
 
     def change_set(self, card_sets):
+        self.load_card_sets()
+        loaded_sets = self.card_sets.keys()
         self.cards = {}
         self.card_set = ""
         for card_set in card_sets:
             clean_set = card_set.strip().upper()
-            if clean_set != "":
+            if clean_set in loaded_sets:
                 self.card_set = clean_set
-        self.writeline(f"Search card set: {self.card_set}")
+        if self.card_set != "":
+            self.writeline(f"Search card set: {self.card_set}")
+        else:
+            self.writeline("Available card sets are:")
+            for card_set in loaded_sets:
+                self.writeline(card_set)
 
 
 def _infer_values(high, low, cards):

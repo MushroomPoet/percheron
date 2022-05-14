@@ -49,7 +49,7 @@ set <set-abbrev> - Change the set for commands.
             self.running = False
         elif cmd in ["?", "help"]:
             self.help()
-        elif cmd.startswith("set "):
+        elif cmd.startswith("set"):
             self.library.change_set(cmd.split(" ")[1:])
         elif cmd.startswith("update "):
             self.library.update_arena_card_sets(

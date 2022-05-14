@@ -58,7 +58,7 @@ For example,
         self.writeline("\n    *** Multiple matches ***")
         names = []
         for card in cards:
-            names.append(card.name())
+            names.append(f"{card.name()} ({card.set_code()})")
         for name in sorted(names):
             self.writeline(name)
         self.writeline("\n")
