@@ -37,7 +37,7 @@ class SetLoader:
         for desc in new_set:
             name = desc.get("name", "")
             if name not in old_set and name.startswith("A-"):
-                name = name[2:]
+                name = name.replace("A-", "")
             if name not in old_set:
                 old_set[name] = Card(desc)
                 self.writeline(f"New card: {name}")

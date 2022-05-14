@@ -27,7 +27,7 @@ def card_list_to_dict(card_list):
     for description in card_list:
         name = description["name"]
         if name not in result and name.startswith("A-"):
-            name = name[2:]
+            name = name.replace("A-", "")
         if name in result:
             result[name].add_description(description)
         else:
