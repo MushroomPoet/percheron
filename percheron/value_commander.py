@@ -4,6 +4,7 @@ from percheron.find_commander import FindCommander
 class ValueCommander(FindCommander):
     HELP = """
 #[.#] <card-spec> - Update the value for the given card
+clear_values - Clear all values in the current set
 report - Print the value report for the current set
 """
 
@@ -21,12 +22,22 @@ report - Print the value report for the current set
         if cmd == "report":
             self.report()
             return
+        elif cmd == "clear_values":
+            self.clear_values()
+            return
         try:
             first_space = cmd.index(" ")
             self.value = float(cmd[:first_space])
             self.find_cards(cmd[first_space + 1:])
         except ValueError:
             super().process_cmd(cmd)
+
+    def clear_values(self):
+        for card in self.library.sorted_cards():
+            card.clear("value")
+            card.clear("inferred_value")
+        self.values = {}
+        self.value = None
 
     def report(self):
         previous_value = 5
