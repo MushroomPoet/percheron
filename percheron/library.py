@@ -27,13 +27,17 @@ class Library:
 
     def update_inferred_values(self):
         value = 5.0
+        prev_card = None
         need_values = []
         for card in self.sorted_cards():
             if card.has_value("value"):
                 low_value = card.float_draft_value()
+                if prev_card != None and low_value > value:
+                    self.writeline(f"\t**** {prev_card.score()} {prev_card.name()} ({value}) \t {card.score()} {card.name()} ({low_value})")
                 _infer_values(value, low_value, need_values)
                 need_values = []
                 value = low_value
+                prev_card = card
             else:
                 if card.score() != 0:
                     need_values.append(card)
