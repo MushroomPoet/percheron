@@ -1,3 +1,4 @@
+import csv
 from percheron.commander import Commander
 from percheron.count_commander import CountCommander
 from percheron.deck_commander import DeckCommander
@@ -10,14 +11,21 @@ from percheron.value_commander import ValueCommander
 class RootCommander(Commander):
     HELP = """
 report - Report on all cards in current set
+rarity sets... - Report on rare and mythics in given sets
 
 find - Find and print details on cards in the current set
+
 score - Record the draft score (order) for cards in the current set
 value - Record the draft value (0-5) for cards in the current set
+
 count - Record counts of cards in the current set
 draft - Enter draft helper mode for the current set
 sealed - Enter sealed helper mode for the current set
+
 deck - Load and assess decks against the current collection
+
+load_stats csv-file - Load additional stats from a CSV file
+
 update - Update the current set from AllPrintings.json
 filename - Set the filename for the storage file.  Default 'percheron.json'.
 write - Write out any new data to the storage file
@@ -48,6 +56,8 @@ write - Write out any new data to the storage file
                 self.report()
             elif cmd.startswith("rarity "):
                 self.rarity_report(cmd[cmd.index(" ") + 1:])
+            elif cmd.startswith("load_stats "):
+                self.load_stats(cmd.split(" ")[1:])
             else:
                 self.writeline(f"Unrecognized command: {cmd}")
 
@@ -64,3 +74,28 @@ write - Write out any new data to the storage file
             rare_counts = self.library.rarity_counts(set_code, "rare")
             rares = f"Rares {rare_counts[0]} out of {rare_counts[1]}"
             self.writeline(f"{set_code}: {mythics}, {rares}")
+
+    def load_stats(self, csv_files):
+        for filename in csv_files:
+            self.load_stats_from_file(filename.strip())
+
+    def load_stats_from_file(self, filename):
+        self.writeline(f"Loading {filename}...")
+        if filename:
+            with open(filename.strip()) as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    self.update_cards(row)
+
+    def update_cards(self, row):
+        if 'name' not in row:
+            self.writeline(f"Name not found in {row}")
+            return
+        name = row['name']
+        cards = self.library.find_cards(name)
+        if not cards:
+            self.writeline(f"\t***** Card '{name}' not found")
+            return
+        for card in cards:
+            card.assign_from_dict(row)
+            self.writeline(f"Card '{name}' updated")

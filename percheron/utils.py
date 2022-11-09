@@ -19,7 +19,9 @@ KEYS = [
     "count",
     "score",
     "inferred_value",
-    "value"
+    "value",
+    "ALSA",
+    "GIHWR"
 ]
 
 def card_list_to_dict(card_list):

@@ -52,6 +52,14 @@ class Card:
         for desc in self.descriptions:
             desc[key] = value
 
+    def assign_from_dict(self, value_dict):
+        for key, value in value_dict.items():
+            try:
+                converted_value = float(value)
+            except ValueError:
+                converted_value = value
+            self.assign(key, converted_value)
+
     def clear(self, key):
         for desc in self.descriptions:
             if key in desc:
@@ -72,7 +80,9 @@ class Card:
         draft_value = self.draft_value()
         rarity = self.value("rarity")
         count = self.count()
-        stream.write(f"{score} {draft_value} {name} ({rarity}) {count}\n")
+        alsa = self.value("ALSA")
+        gihwr = self.value("GIHWR")
+        stream.write(f"{score} {draft_value} {alsa} {gihwr} {name} ({rarity}) {count}\n")
         stream.flush()
 
     def types(self):
